@@ -23,7 +23,8 @@ except ImportError:
     pass
 
 # ---------------------------------------------------------------------------
-# Estimated costs per 1M INPUT & OUTPUT tokens (USD) as of March 2026
+# Fixed classroom cost assumptions per 1M INPUT & OUTPUT tokens (USD).
+# These rates preserve the lab grading fixtures, not current API billing prices.
 # Vietnamese text generally consumes ~1.5x - 2.0x more tokens than English due to Unicode/diacritics.
 # ---------------------------------------------------------------------------
 PRICING_1M_TOKENS = {
@@ -184,7 +185,7 @@ def call_gemini(
     """
     from google import genai
 
-    client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+    client = genai.Client(api_key=os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY"))
     config = _gemini_config(model, temperature, top_p, max_tokens)
 
     start = time.perf_counter()
@@ -325,7 +326,7 @@ def streaming_chatbot() -> None:
     from google.genai import types
 
     _ensure_utf8_output()
-    client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+    client = genai.Client(api_key=os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY"))
     config = _gemini_config(GEMINI_MODEL, temperature=0.7, top_p=0.9, max_tokens=1024)
     history: list = []  # alternating user / model messages
     max_messages = CHATBOT_MAX_TURNS * 2

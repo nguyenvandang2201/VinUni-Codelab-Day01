@@ -1,0 +1,5 @@
+# Assignment source provenance
+
+The signed-in VinUni LMS links to https://github.com/VinUni-AI20k/Day01-lab-assignment/ . That URL returned 404 on 2026-11-06. Its README was available through the web reader cache.
+
+The README, exercise questions, function signatures and tests were cross-checked against the public mirror https://github.com/va290/Day01-lab-assignment/tree/2facc2f15e1f9c0644428a67786de4c68b14aeb6 . The mirror README matches the cached official assignment requirements. Only the exercise questions, template signatures and test assertions were used to recover requirements. The mirror solution/solution.py and solution/exercises.md answer files were not opened or copied. The submission implementation and exercise analysis were written in this workspace. The recovered tests preserve their assertions; only dynamic module names in their loader were adjusted to avoid a non-importable parent package. Original LMS tests could not be retrieved directly, so the recovered suite is not proof of the current server grading configuration.

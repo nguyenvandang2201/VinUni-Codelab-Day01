@@ -1,5 +1,57 @@
 # Student Guide: Nền tảng LLM API (Step-by-Step Walkthrough)
 
+## Bài làm và cách kiểm tra
+
+**Lưu ý khi nộp K5:** mục “Submit your public Github repo” hiện trỏ tới
+[K5-L3-Day-01-AI-Foundation-Lab](https://github.com/VinUni-AI20k/K5-L3-Day-01-AI-Foundation-Lab).
+Đây là bài chính phân loại spam bằng ML, DL, embedding và LLM; yêu cầu nộp
+**link repository**, không nộp ZIP. Các bài API bên dưới chưa thay thế bài chính đó.
+Xem [đối chiếu yêu cầu K5](reports/current_k5_requirements.md).
+
+Trong dự án có hai bộ yêu cầu của Ngày 1:
+
+| Nội dung | Mã nguồn | Kết quả kiểm tra 06/11/2026 |
+|---|---|---|
+| Codelab theo slide: OpenAI, Gemini, Anthropic, so sánh và chatbot Gemini | `starter-code/template.py`, `solution-code/solution.py` | 9 kiểm thử có sẵn đạt |
+| Đề API cũ ở mục Lab 1 Assignment: OpenAI, OpenAI-mini, so sánh và chatbot OpenAI | `solution/solution.py`, `solution/exercises.md` | 19 kiểm thử khôi phục từ bản sao đề đạt |
+| Kiểm tra bổ sung: streaming, lịch sử, lỗi giữa luồng, tham số, retry và API key alias | `tests/test_lms_behavior.py` | 8 kiểm thử đạt |
+
+Tổng cộng **36 kiểm thử mock đạt**. Kiểm thử mock không xác nhận API key, quota
+hay kết nối thật. Hiện phần thực nghiệm temperature còn chờ cấu hình API key.
+Nguồn đề và giới hạn đối chiếu được ghi tại [reports/assignment_source.md](reports/assignment_source.md).
+
+Chạy toàn bộ kiểm thử từ thư mục gốc:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest tests/ -v
+```
+
+Điền API key vào file `.env` trên máy, rồi chạy chương trình tương ứng:
+
+```powershell
+# Bài Codelab theo slide
+.\.venv\Scripts\python.exe starter-code/template.py
+
+# Bài nộp LMS
+.\.venv\Scripts\python.exe solution/solution.py
+
+# Thu thập bốn phản hồi thật cho Bài tập 2.1 (có gọi API)
+.\.venv\Scripts\python.exe tools/run_temperature_experiment.py
+```
+
+Sau khi cập nhật quan sát từ kết quả thật trong `reports/temperature_results.json`,
+đóng gói bài nộp theo mã sinh viên:
+
+```powershell
+.\.venv\Scripts\python.exe tools/package_submission.py --student-id 2A202603371
+```
+
+File tạo ra là `dist/2A202603371_lab_1.zip`, dành cho đề API cũ yêu cầu ZIP.
+Công cụ chỉ đóng gói các file bài
+làm được chỉ định. Chưa coi là đã nộp bài cho tới khi LMS xác nhận thành công.
+
+---
+
 > [!NOTE]
 > Tài liệu này được thiết kế để hỗ trợ bạn hoàn thành bài Lab 01 một cách nhanh chóng nhất. Hãy sử dụng nó làm cẩm nang khi triển khai các hàm trong `template.py`.
 
